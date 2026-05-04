@@ -1,3 +1,5 @@
+<img width="956" height="475" alt="image" src="https://github.com/user-attachments/assets/c0b6a1bc-9b5e-4eb5-a7b3-b25df1cf7e4b" />
+
 # IDM Tool - Unified Activation Manager
 
 **ZIEDEV 2026 | https://github.com/zinzied**
