@@ -18,7 +18,7 @@ A single-file menu-driven tool to activate, freeze, reset, and manage Internet D
 
 1. Download `idm_tool.exe` from: https://github.com/zinzied/IDM-Freezer-Activation-Tool/releases/download/v6.1/idm_toolx64.exe
 2. Double-click the downloaded `idm_tool.exe`
-3. Click **Yes** on the UAC prompt to run as Administrator
+3. Run it as Administrator
 4. The menu appears
 
 ---
