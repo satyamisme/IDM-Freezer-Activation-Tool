@@ -1,99 +1,101 @@
-# IDM Freezer & Activation Tool v6.0
-An enhanced open-source tool to activate, freeze trial, and manage Internet Download Manager
+# IDM Tool - Unified Activation Manager
 
-![Capture](https://github.com/user-attachments/assets/fdaf3422-b3c5-4b72-82d8-6ab18ae7abfe)
+**ZIEDEV 2026 | https://github.com/zinzied**
 
+A single-file menu-driven tool to activate, freeze, reset, and manage Internet Download Manager (IDM) on Windows. Simply run the .exe as Administrator.
 
-## What's New in Version 5.3.0
-- **🛡️ Enhanced Anti-Detection**: Added new verification server IPs (`67.xx.xx.xx`, `169.xx.xx.xx21`) to firewall blocks.
-- **🌐 Updated Hosts Block**: Included more recent domains used by IDM for verification checks.
-- **⚠️ Smart Recommendations**: The UI now warns against traditional activation and recommends the "Freeze Trial" method.
-- **🚀 Version Update**: All components synchronized to v5.2.4 for consistent behavior.
+---
+
+## Files
+
+| File | Description |
+|------|-------------|
+| `idm_tool.exe` | Standalone executable — no Python or additional files needed |
+
+---
+
+## How to Run
+
+1. Double-click `idm_tool.exe`
+2. Run it as Administrator
+3. The menu appears
+
+---
 
 ## Features
-- **Fully Self-Contained** - Single portable executable, no installation needed
-- IDM freeze trial and activation with advanced methods
-- Activation and trial persist even after installing IDM updates
-- IDM trial reset
-- IDM status checking with detailed information
-- Advanced backup and restore with history
-- Automatic update checking
-- Comprehensive logging system
-- Configuration management
-- Settings menu for customization
-- Fully open source
-- Works offline for activation and freeze operations
 
-## Usage
+- **Lifetime Activation** - Activate IDM with a permanent serial
+- **Freeze Trial** - Freeze the 30-day trial period forever
+- **Freeze Activation** - Apply serial + block online verification (recommended)
+- **Reset** - Clear all IDM registration and trial data
+- **Status Check** - View current IDM registration state
+- **Enable Updates** - Allow IDM updates (with warning that it breaks activation)
+- **Crash logging** - Errors saved to `idm_tool_crash.log` for debugging
+- **Automatic Hosts File Cleaning** - Before activation, freeze, reset, or quick activate, the tool removes any existing IDM server blocks from the hosts file to ensure a clean state for activation
 
-### Running the Application
+---
 
-1. Download `IDM Manager v5.3.0x64.exe`
-2. Right-click → **Run as administrator**
-3. Select your desired option from the menu
+## Menu Options
 
-> **Note**: Administrator privileges are required for all operations.
+| Option | Action | Description |
+|--------|--------|-------------|
+| **1** | Activate IDM (Lifetime) | Full activation via embedded engine |
+| **2** | Freeze 30-Day Trial | Freeze trial permanently without serial |
+| **3** | Reset Activation / Trial | Clear all IDM registration data |
+| **4** | Quick Activate (Direct) | Apply random serial directly to registry |
+| **5** | Check IDM Status | View current registration state |
+| **6** | Restart IDM | Kill and relaunch IDM |
+| **7** | **Freeze Activation** | **Recommended** — Serial + block online verification |
+| **8** | Enable IDM Updates | Allow updates (will break activation!) |
+| **0** | Exit | Close the tool |
 
-### Menu Options
+---
 
-| Option | Description |
-|--------|-------------|
-| **[1] Freeze Trial** | ★ Recommended - Most reliable method |
-| **[2] Legacy Activation** | Traditional activation method |
-| **[3] Reset** | Clear all activation/trial data |
-| **[4] Check Status** | View current IDM status |
-| **[5] Backup/Restore** | Manage IDM settings backups |
-| **[6] Download IDM** | Get the latest IDM version |
-| **[7] GitHub** | Visit the repository |
-| **[8] Check Updates** | Check for tool updates |
-| **[9] Settings** | Configure tool options |
-| **[0] Exit** | Close the application |
+## Recommended Workflow
 
-## Methods
+### First Time / Fresh Install
 
-### Freeze Trial (Recommended)
-IDM provides a 30-day trial period. This option locks the trial period for lifetime so you won't have to reset the trial again and your trial won't expire.
-IDM updates can be installed directly without having to freeze it again.
+1. Close IDM completely (including system tray icon)
+2. Run `idm_tool.exe` as Administrator
+3. Choose **[7] Freeze Activation**
+4. Let it restart IDM automatically when prompted
+5. In IDM, go to **Help -> Register IDM** to verify:
+   - Status: Registered
+   - Type: Lifetime
 
-### Activation
-Registers IDM with full functionality. Your activation remains permanent and undetected.
+### Why Option 7 is Best
 
-### Reset IDM Activation / Trial
-Resets the IDM activation or trial period. Use this if you encounter any issues or want to start fresh.
+**Option 7** does three things:
+1. Applies a **randomly generated serial** to the registry
+2. Blocks IDM's validation servers in your `hosts` file (after cleaning any existing blocks)
+3. Disables IDM's update check
 
-### Check IDM Status
-Checks the current status of your IDM installation (activated, in trial, or expired).
+This prevents the "Fake Serial" popup forever because IDM can never phone home to verify the serial.
 
-### Backup/Restore IDM Settings
-Allows you to backup your current IDM settings and restore them later if needed.
+---
 
-## Requirements
-- Windows 7/8/8.1/10/11 (64-bit)
-- Internet Download Manager installed
+## Updating IDM (Not Recommended)
+
+Updating IDM to a new version will **break your activation**. If you must update:
+
+1. Run this tool and choose **[8] Enable IDM Updates**
+2. Update IDM through its official updater
+3. **Immediately re-run this tool and choose [7] Freeze Activation again**
+
+---
 
 ## Troubleshooting
 
-### Downloads Not Working After Activation
-1. Run **Option 3 (Reset)** first
-2. Then run **Option 1 (Freeze Trial)** again
+| Problem | Solution |
+|---------|----------|
+| Window closes instantly | Check `idm_tool_crash.log` in the same folder, or run from CMD/PowerShell |
+| "Fake Serial" popup appears | Use **Option 7** (Freeze Activation) instead of Option 1 |
+| Activation lost after update | Re-run **Option 7** after each IDM update |
+| IDM not found | Make sure IDM is installed in the default location |
+| UAC prompt does not appear | Right-click `idm_tool.exe` and select **Run as administrator** |
 
-### IDM Not Detected
-- Make sure IDM is installed
-- Download IDM from: https://www.internetdownloadmanager.com/download.html
-
-### If "Fake Serial" Detection Occurs
-1. **RESET**: Run **Option 3 (Reset)** to clear all current activation data.
-2. **REINSTALL**: Reinstall IDM (optional but recommended for a clean state).
-3. **FREEZE**: Run **Option 1 (Freeze Trial)**. This is the **most robust** method for current IDM versions.
+---
 
 ## Disclaimer
-I would like to make it clear that I am not the original creator of this script. 
-When I first uploaded this script to GitHub, the main author had not yet established an official GitHub repository. 
-Consequently, users had to go to the official forum to download and use the script until the GitHub repository was eventually created.
-My primary goal in setting up this repository was to simplify the process for users. Additionally, 
-I made sure to acknowledge the original creators of the script to show respect for their work.
 
-### 💖 Donations
-If you feel like showing your love and/or appreciation for this simple project, then how about buying me a coffee or milk? ☕🥛
-
-[<img src="https://github.com/zinzied/Website-login-checker/assets/10098794/24f9935f-3637-4607-8980-06124c2d0225">](https://www.buymeacoffee.com/Zied)
+This tool is for educational and research purposes only. Use at your own risk. The authors are not responsible for any misuse or damage caused by this software.
